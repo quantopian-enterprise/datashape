@@ -1,0 +1,73 @@
+Release |version|
+-----------------
+
+:Release: |version|
+:Date: TBD
+
+New Features
+------------
+
+None
+
+New Types
+---------
+
+* datashape now supports a ``categorical`` type (:issue:`150`).
+
+Experimental Types
+------------------
+
+.. warning::
+
+   Experimental types are subject to change.
+
+* Records can now be constructed with the new syntax:
+  ``R['field0':type0, 'field1':type1, ...]``
+  where each slice object represents a field in the record.
+  ``R`` acts as an alias for ``Record`` to make it more pleasant to
+  construct these literal types (:issue:`186`).
+
+API Changes
+-----------
+
+* ``datashape`` no longer supports Python 2.6 (:issue:`189`).
+* ``datashape`` no longer support Python 3.3 (:issue:`191`).
+* The default ``repr`` of ``Mono`` subclass now prints out the slot
+  names as keyword arguments next to their values (:issue:`188`).
+  For example
+
+  Instead of
+
+  .. code-block:: python
+
+     >>> from datashape import Decimal
+     >>> Decimal(precision=11, scale=2)
+     Decimal(11, 2)
+
+  we have
+
+  .. code-block:: python
+
+     >>> Decimal(precision=11, scale=2)
+     Decimal(precision=11, scale=2)
+* Fields are now always constructed with ``str`` in Record datashapes
+  (:issue:`197`).
+
+Bug Fixes
+---------
+
+* Makes the parser recognize ``null`` and ``void`` (:issue:`183`).
+* Cache the datashape hash value to avoid potentially expensive recomputation
+  during memoization (:issue:`184`).
+* Fix discovery of strings that start with things that look like numbers
+  (:issue:`190`).
+* Makes the parser recognize ``object`` (:issue:`193`).
+* Make string field names in Record types have the same string type
+  (:issue:`200`).
+* Fix the reprs for :class:`~datashape.coretypes.Function` objects
+  (:issue:`194`).
+
+Miscellaneous
+-------------
+
+None
